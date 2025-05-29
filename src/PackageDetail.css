@@ -1,0 +1,422 @@
+/* Container and Card */
+.package-detail .container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.package-card {
+  background: var(--white, #fff);
+  border-radius: 1.2rem;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+  padding: 2.5rem 2rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center all children horizontally */
+  position: relative;
+}
+
+/* Back Arrow at the edge */
+.package-card .back-arrow {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  font-size: 2rem;
+  color: var(--primary, #3b82f6);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+/* Title */
+.package-card .card-title {
+  margin-bottom: 1.5rem;
+  text-align: center;
+  width: 100%;
+}
+
+/* Image */
+.package-card .card-banner {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.package-card .card-banner img {
+  width: 100%;
+  max-width: 600px;
+  min-width: 220px;
+  height: auto;
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  object-fit: cover;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Details Row */
+.package-card .card-meta-list {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1.2rem;
+  margin: 1.5rem auto 1.5rem auto; /* slightly below image */
+  justify-content: center;
+  max-width: 95vw;
+  background: var(--white);
+  border-radius: 50px;
+  box-shadow: 0 0 5px hsla(0, 0%, 0%, 0.10);
+  padding: 8px 10px;
+  overflow-x: auto;
+}
+
+/* Meta item text */
+.package-card .meta-box {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--onyx, #363636);
+}
+
+/* Description */
+.package-card .card-text {
+  margin-bottom: 2rem;
+  color: var(--onyx, #363636);
+  text-align: center;
+  width: 100%;
+}
+
+/* Price and Book Now Button (horizontal card) */
+.package-card .card-price {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  text-align: center;
+  border-radius: 1rem;
+  padding: 1rem 2rem;
+  background: var(--primary, #3b82f6); /* Uncomment for colored card */
+}
+
+.package-card .price {
+  color: #fff;
+  margin-bottom: 0;
+  margin-right: 0.5rem;
+  font-size: 2.2rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+}
+
+.package-card .price span {
+  color: #fff;
+  font-size: 1.2rem;
+  margin-left: 0.5rem;
+}
+
+.package-card .btn.btn-secondary {
+  font-size: 1.1rem;
+  padding: 0.7rem 2.2rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  background: transparent;
+  color: #fff;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  transition: background 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+
+/* Main card: always vertical, centered */
+.package-detail .package-card {
+  background: var(--white, #fff);
+  border-radius: 1.2rem;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+  padding: 2.5rem 2rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  max-width: 600px;
+  margin: 2rem auto;
+}
+
+.package-detail .back-arrow {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  font-size: 2rem;
+  color: var(--primary, #3b82f6);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+/* Heading: responsive font size */
+.package-detail .card-title {
+  margin-bottom: 1.5rem;
+  text-align: center;
+  width: 100%;
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+@media (max-width: 600px) {
+  .package-detail .card-title {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+}
+
+/* Image */
+.package-detail .card-banner {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.2rem;
+}
+.package-detail .card-banner img {
+  width: 100%;
+  max-width: 420px;
+  min-width: 180px;
+  height: auto;
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  object-fit: cover;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Details Row: reduce gap and font size on small screens */
+.package-detail .card-meta-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 1.2rem;
+  margin: 1.2rem 0 1.5rem 0;
+  justify-content: center;
+  align-items: center;
+  max-width: 95vw;
+  background: var(--white);
+  border-radius: 50px;
+  box-shadow: 0 0 5px hsla(0, 0%, 0%, 0.10);
+  padding: 8px 10px;
+  overflow-x: auto;
+  font-size: 1rem;
+}
+
+@media (max-width: 600px) {
+  .package-detail .card-meta-list {
+    gap: 0.5rem;
+    padding: 4px 4px;
+    font-size: 0.85rem;
+    margin: 0.7rem 0 1rem 0;
+  }
+  .package-detail .meta-box {
+    font-size: 0.85rem;
+  }
+}
+
+/* Description */
+.package-detail .card-text {
+  margin-bottom: 2rem;
+  color: var(--onyx, #363636);
+  text-align: center;
+  width: 100%;
+  font-size: 1.08rem;
+  line-height: 1.6;
+}
+
+/* Card price and button: keep horizontal, reduce font and radius on small screens */
+.package-detail .card-price {
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  text-align: center;
+  border-radius: 1rem;
+  padding: 1.2rem 2rem;
+  background: var(--primary, #3b82f6);
+  max-width: 420px;
+  margin-bottom: 0;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  text-align: center;
+  border-radius: 1rem;
+  padding: 1.2rem 2rem;
+  background: var(--primary, #3b82f6);
+  width: 100%;
+  max-width: 420px;
+  flex-direction: row; /* always horizontal */
+}
+
+.package-detail .price {
+  color: #fff;
+  margin-bottom: 0;
+  margin-right: 0.5rem;
+  font-size: 2.2rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+}
+.package-detail .price span {
+  color: #fff;
+  font-size: 1.2rem;
+  margin-left: 0.5rem;
+}
+
+.package-detail .btn.btn-secondary {
+  font-size: 1.1rem;
+  padding: 0.7rem 2.2rem;
+  border-radius: 100px; /* OG style: fully rounded */
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  background: transparent;
+  color: #fff;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  transition: background 0.2s, color 0.2s;
+  white-space: nowrap;
+  width: auto !important;
+  display: inline-block !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .package-card {
+    padding: 1.2rem 0.5rem 1rem 0.5rem;
+  }
+  .package-card .card-banner img {
+    max-width: 100vw;
+    min-width: 0;
+  }
+  .package-card .card-meta-list {
+    gap: 0.8rem;
+    max-width: 95vw;
+    margin: 1.2rem auto 1rem auto;
+    padding: 6px 4px;
+  }
+  .package-card .card-price {
+    gap: 1rem;
+    padding: 1rem 0.5rem;
+  }
+  .package-card .price {
+    font-size: 1.5rem;
+  }
+  .package-card .btn.btn-secondary {
+    width: 100%;
+    padding: 0.7rem 0;
+    font-size: 1rem;
+  }
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 600px) {
+  .package-detail .package-card {
+    padding: 1.2rem 0.5rem 1rem 0.5rem;
+    max-width: 98vw;
+  }
+  .package-detail .card-banner img {
+    max-width: 100vw;
+    min-width: 0;
+  }
+  .package-detail .card-meta-list {
+    gap: 0.8rem;
+    max-width: 95vw;
+    margin: 1.2rem 0 1rem 0;
+    padding: 6px 4px;
+  }
+  .package-detail .card-price {
+    flex-direction: row;
+    gap: 1rem;
+    padding: 1rem 0.5rem;
+    max-width: 98vw;
+  }
+  .package-detail .price {
+    font-size: 1.5rem;
+  }
+  .package-detail .btn.btn-secondary {
+    width: 100%;
+    padding: 0.7rem 0;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  /* Remove absolute positioning and place arrow above title */
+  .package-detail .back-arrow,
+  .package-card .back-arrow {
+    position: static;
+    margin-bottom: 0.5rem;
+    align-self: flex-start;
+    left: unset;
+    top: unset;
+  }
+
+  /* Center the title and add spacing below the arrow */
+  .package-detail .card-title,
+  .package-card .card-title {
+    margin-top: 0;
+    padding-left: 0;
+    text-align: center;
+  }
+}
+
+/* Force flex row for card price on detail page, all screens */
+.package-detail .card-price {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  text-align: center;
+  border-radius: 1rem;
+  padding: 1.2rem 2rem;
+  background: var(--primary, #3b82f6);
+  max-width: 420px;
+  margin-bottom: 0;
+}
+
+/* Ensure button is inline and not full width on large screens */
+ .package-detail .btn.btn-secondary {
+    font-size: 0.95rem;
+    padding: 0.5rem 1.2rem;
+    border-radius: 100px; /* keep OG fully rounded */
+  }
+
+/* Ensure detail card is always flex column, not grid */
+.package-detail .package-card {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+}
+
+.package-detail {
+  background: url('./assets/images/hero-banner.jpg') center center/cover no-repeat;
+  padding: 40px 0;
+  min-height: 100vh;
+}
+
+.package-detail-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(20, 20, 30, 0.55); /* dark, semi-transparent */
+  z-index: 0;
+  pointer-events: none;
+}
