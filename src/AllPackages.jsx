@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { fetchPackages } from "./api/pocketbase";
 import { Link } from "react-router-dom";
-import "./AllPackages.css"; // Reuse the same styles as AllPackages
+import "./AllPackages.css"; // Optional: for custom styles
 
-const Packages = () => {
+const AllPackages = () => {
   const [packages, setPackages] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -32,31 +32,19 @@ const Packages = () => {
   if (error) return <p>Error fetching packages: {error}</p>;
 
   return (
-    <section className="package" id="package">
+    <section className="all-packages">
       <div className="container">
-        <p className="section-subtitle">Popular Packages</p>
-        <h2 className="h2 section-title">Checkout Our Packages</h2>
-        <p className="section-text">
-          Fusce hic augue velit wisi quibusdam pariatur, iusto primis, nec nemo, rutrum. Vestibulum cumque laudantium.
-          Sit ornare mollitia tenetur, aptent.
-        </p>
+        <h2 className="h2 section-title">All Packages</h2>
         <div className="all-packages-grid">
-          {packages.slice(0, 4).map((pkg) => {
+          {packages.map((pkg) => {
             const imageFile = pkg.image && (Array.isArray(pkg.image) ? pkg.image[0] : pkg.image);
             const imageUrl = imageFile
               ? `https://backend-tourly.fly.dev/api/files/packages/${pkg.id}/${imageFile}`
               : "./assets/images/packege-1.jpg";
-            const reviews = pkg.reviews || 0;
-            const stars = 5;
-
             return (
               <div className="package-card" key={pkg.id}>
                 <figure className="card-banner">
-                  <img
-                    src={imageUrl}
-                    alt={pkg.title}
-                    loading="lazy"
-                  />
+                  <img src={imageUrl} alt={pkg.title} loading="lazy" />
                 </figure>
                 <div className="card-content">
                   <h3 className="h3 card-title">{pkg.title}</h3>
@@ -86,23 +74,11 @@ const Packages = () => {
                     </li>
                   </ul>
                   <div className="card-price">
-                    <div className="wrapper">
-                      <p className="reviews">({reviews} reviews)</p>
-                      <div className="card-rating">
-                        {[...Array(stars)].map((_, i) => (
-                          <ion-icon key={i} name="star"></ion-icon>
-                        ))}
-                      </div>
-                    </div>
                     <p className="price">
                       ${pkg.price}
                       <span>/ per person</span>
                     </p>
-                    <Link
-                      to={`/package/${pkg.id}`}
-                      className="btn btn-secondary"
-                      style={{ display: "inline-block", textDecoration: "none", color: "inherit" }}
-                    >
+                    <Link to={`/package/${pkg.id}`} className="btn btn-secondary">
                       Book Now
                     </Link>
                   </div>
@@ -111,12 +87,9 @@ const Packages = () => {
             );
           })}
         </div>
-        <Link to="/packages" className="btn btn-primary">
-          View All Packages
-        </Link>
       </div>
     </section>
   );
 };
 
-export default Packages;
+export default AllPackages;

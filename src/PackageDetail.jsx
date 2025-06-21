@@ -10,12 +10,14 @@ const PackageDetail = () => {
   const { id } = useParams();
   const [pkg, setPkg] = useState(null);
   const [error, setError] = useState(null);
+  const [currentImg, setCurrentImg] = useState(0);
 
   useEffect(() => {
     fetchPackages()
       .then((data) => {
         const found = data.find((p) => p.id === id);
         setPkg(found);
+        setCurrentImg(0);
       })
       .catch((err) => setError(err.message || "Error fetching package"));
   }, [id]);
@@ -23,10 +25,14 @@ const PackageDetail = () => {
   if (error) return <p>Error: {error}</p>;
   if (!pkg) return <p>Loading...</p>;
 
-  const imageFile = pkg.image && (Array.isArray(pkg.image) ? pkg.image[0] : pkg.image);
-  const imageUrl = imageFile
-    ? `https://backend-tourly.fly.dev/api/files/packages/${pkg.id}/${imageFile}`
-    : "./assets/images/packege-1.jpg";
+  // Get all images for the package
+  const images = Array.isArray(pkg.image) ? pkg.image : pkg.image ? [pkg.image] : [];
+  const imageUrls = images.map(
+    (img) => `https://backend-tourly.fly.dev/api/files/packages/${pkg.id}/${img}`
+  );
+
+  const handlePrev = () => setCurrentImg((prev) => (prev === 0 ? imageUrls.length - 1 : prev - 1));
+  const handleNext = () => setCurrentImg((prev) => (prev === imageUrls.length - 1 ? 0 : prev + 1));
 
   return (
     <>
@@ -48,12 +54,67 @@ const PackageDetail = () => {
               <ion-icon name="arrow-back-outline"></ion-icon>
             </Link>
             <h2 className="h2 card-title">{pkg.title}</h2>
-            <figure className="card-banner">
-              <img
-                src={imageUrl}
-                alt={pkg.title}
-              />
-            </figure>
+            {/* Carousel */}
+            {imageUrls.length > 0 && (
+              <div className="carousel" style={{ position: "relative", marginBottom: "1rem", textAlign: "center" }}>
+                <img
+                  src={imageUrls[currentImg]}
+                  alt={pkg.title}
+                  style={{
+                    width: "100%",
+                    maxWidth: "400px",
+                    height: "250px",
+                    objectFit: "cover",
+                    borderRadius: "10px",
+                  }}
+                />
+                {imageUrls.length > 1 && (
+                  <>
+                    <button
+                      onClick={handlePrev}
+                      style={{
+                        position: "absolute",
+                        left: 0,
+                        top: "50%",
+                        transform: "translateY(-50%)",
+                        background: "rgba(0,0,0,0.4)",
+                        color: "#fff",
+                        border: "none",
+                        borderRadius: "50%",
+                        width: "32px",
+                        height: "32px",
+                        cursor: "pointer",
+                      }}
+                      aria-label="Previous image"
+                    >
+                      &#8592;
+                    </button>
+                    <button
+                      onClick={handleNext}
+                      style={{
+                        position: "absolute",
+                        right: 0,
+                        top: "50%",
+                        transform: "translateY(-50%)",
+                        background: "rgba(0,0,0,0.4)",
+                        color: "#fff",
+                        border: "none",
+                        borderRadius: "50%",
+                        width: "32px",
+                        height: "32px",
+                        cursor: "pointer",
+                      }}
+                      aria-label="Next image"
+                    >
+                      &#8594;
+                    </button>
+                    <div style={{ marginTop: "0.5rem", fontSize: "0.9rem", color: "#888" }}>
+                      {currentImg + 1} / {imageUrls.length}
+                    </div>
+                  </>
+                )}
+              </div>
+            )}
             <ul className="card-meta-list">
               <li className="card-meta-item">
                 <div className="meta-box">
@@ -80,7 +141,14 @@ const PackageDetail = () => {
                 </div>
               </li>
             </ul>
-            <p className="card-text">{pkg.description}</p>
+            {/* Description with paragraphs */}
+            {pkg.description &&
+              pkg.description.split(/\r?\n/).map((para, idx) =>
+                para.trim() ? (
+                  <p className="card-text" key={idx}>{para}</p>
+                ) : null
+              )
+            }
             <div className="card-price">
               <p className="price">
                 ${pkg.price}
